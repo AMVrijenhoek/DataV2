@@ -38,14 +38,14 @@ public class NsApiReader {
         // Get the protected web page:
         WebResource webResource = client.resource("http://webservices.ns.nl/ns-api-avt?station=RTD");
         String receivedXML = webResource.accept(MediaType.APPLICATION_XML).get(String.class);
-        JSONObject tempName = XML.toJSONObject(receivedXML);
+        //JSONObject tempName = XML.toJSONObject(receivedXML);
 
         departTimes = webResource.get(String.class);
         Stringrestucture();
 
         //todo write to database
 
-        System.out.println(tempName);
+        System.out.println(departTimes);
 
         //todo: make a NsDB (new class) see twitterDB class for example.
 
@@ -69,8 +69,8 @@ public class NsApiReader {
         //departTimes=departTimes.replaceAll("\n\n","\n");
         //departTimes=departTimes.replaceAll("<VertrekSpoor wijziging=\"false\">","false\n");
         //departTimes=departTimes.replaceAll("<VertrekSpoor wijziging=\"true\">","true\n");
-        departTimes=departTimes.replaceAll("<VertrekVertraging>","==========");
-        departTimes=departTimes.replaceAll("</.*>","");
+        //departTimes=departTimes.replaceAll("<VertrekVertraging>","==========");
+        //departTimes=departTimes.replaceAll("</.*>","");
         //departTimes=departTimes.replaceAll("<.*>","");
         //departTimes=departTimes.replaceAll("\n\n","\n;");
         /*
