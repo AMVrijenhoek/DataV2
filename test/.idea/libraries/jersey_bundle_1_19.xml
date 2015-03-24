@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jersey-bundle-1.19">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-bundle/1.19/jersey-bundle-1.19.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/json/json/20140107/json-20140107.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
