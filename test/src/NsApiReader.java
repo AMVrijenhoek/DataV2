@@ -23,7 +23,8 @@ public class NsApiReader {
     String routeText;
     String carrier;
     String trackChanced;
-    String DepartureTrack;
+    String departureTrack;
+    String travelTip;
 
     public void getNsApiData()
     {
@@ -43,9 +44,10 @@ public class NsApiReader {
         departTimes = webResource.get(String.class);
         Stringrestucture();
 
-        //todo write to database
-
         System.out.println(departTimes);
+        System.out.println(departTimes.length());
+
+        writeToDatabase();
 
         //todo: make a NsDB (new class) see twitterDB class for example.
 
@@ -65,31 +67,72 @@ public class NsApiReader {
     {
         //remove irrelevant parts of string and reorganize(leaves only about 1/4 of the sting in the end)
         departTimes=departTimes.replaceAll("\t","");
-        //departTimes=departTimes.replaceAll("\n\n","\n");
-        //departTimes=departTimes.replaceAll("\n\n","\n");
-        //departTimes=departTimes.replaceAll("<VertrekSpoor wijziging=\"false\">","false\n");
-        //departTimes=departTimes.replaceAll("<VertrekSpoor wijziging=\"true\">","true\n");
-        //departTimes=departTimes.replaceAll("<VertrekVertraging>","==========");
-        //departTimes=departTimes.replaceAll("</.*>","");
-        //departTimes=departTimes.replaceAll("<.*>","");
-        //departTimes=departTimes.replaceAll("\n\n","\n;");
-        /*
-        departTimes=departTimes.replaceAll("/","");
-        departTimes=departTimes.replaceAll("<RitNummer>","");
-        departTimes=departTimes.replaceAll("<VertrekTijd>","");
-        departTimes=departTimes.replaceAll("<VertrekVertraging>","&");
-        departTimes=departTimes.replaceAll("<VertrekVertragingTekst>","");
-        departTimes=departTimes.replaceAll("<EindBestemming>","");
-        departTimes=departTimes.replaceAll("<TreinSoort>","");
-        departTimes=departTimes.replaceAll("<RouteTekst>","");
-        departTimes=departTimes.replaceAll("<Vervoerder>","");
+        departTimes=departTimes.replaceAll("\n\n","\n");
+        departTimes=departTimes.replaceAll("\n\n","\n");
+        departTimes=departTimes.replaceAll("</VertrekTijd>\n<EindBestemming>","\n\n\n");
+        departTimes=departTimes.replaceAll("</TreinSoort>\n<Vervoerder>","\n\n");
         departTimes=departTimes.replaceAll("<VertrekSpoor wijziging=\"false\">","false\n");
         departTimes=departTimes.replaceAll("<VertrekSpoor wijziging=\"true\">","true\n");
-        departTimes=departTimes.replaceAll("<VertrekSpoor>","");
-        departTimes=departTimes.replaceAll("<VertrekkendeTrein>\n<VertrekkendeTrein>",";");
-        departTimes=departTimes.replaceAll("<ReisTip>","");
-        departTimes=departTimes.replaceAll("<ActueleVertrekTijden>","");
-        departTimes=departTimes.replaceAll("<VertrekkendeTrein>","");
-        */
+        departTimes=departTimes.replaceAll("</VertrekSpoor>\n</VertrekkendeTrein>","\n");
+        departTimes=departTimes.replaceAll("</.*>","");
+        departTimes=departTimes.replaceAll("<VertrekkendeTrein>\n",";");
+        departTimes=departTimes.replaceAll("<.*>","");
+
     }
+    private void writeToDatabase()
+    {
+        int a=0;
+        int part=1;
+        while(true)
+        {
+            if(Character.toString(departTimes.charAt(a)).equals(";"))
+            {
+                break;
+            }
+            else
+            {
+                a++;
+            }
+        }
+        for(int i=a;i<departTimes.length();i++)
+        {
+            if(Character.toString(departTimes.charAt(i)).equals(";"))
+            {
+                part=1;
+                ritNumber="";
+                departureTime="";
+                delay="";
+                delayText="";
+                endDestination="";
+                trainType="";
+                routeText="";
+                carrier="";
+                trackChanced="";
+                departureTrack="";
+                travelTip="";
+            }
+            else if(Character.toString(departTimes.charAt(i)).equals("\n"))
+            {
+                part++;
+            }
+            else
+            {
+                switch (part)
+                {
+                    case 1: ritNumber=ritNumber+Character.toString(departTimes.charAt(i)); break;
+                    case 2: departureTime=departureTime+Character.toString(departTimes.charAt(i));break;
+                    case 3: delay=delay+Character.toString(departTimes.charAt(i));break;
+                    case 4: delayText=delayText+Character.toString(departTimes.charAt(i)); break;
+                    case 5: endDestination=endDestination+Character.toString(departTimes.charAt(i));break;
+                    case 6: trainType=trainType+Character.toString(departTimes.charAt(i));break;
+                    case 7: routeText=routeText+Character.toString(departTimes.charAt(i));break;
+                    case 8: carrier=carrier+Character.toString(departTimes.charAt(i));break;
+                    case 9: trackChanced=trackChanced+Character.toString(departTimes.charAt(i));break;
+                    case 10: departureTrack=departureTrack+Character.toString(departTimes.charAt(i));break;
+                    case 11: travelTip=travelTip+Character.toString(departTimes.charAt(i));break;
+                }
+            }
+        }
+    }
+
 }

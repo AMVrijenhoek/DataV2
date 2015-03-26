@@ -31,7 +31,6 @@ public class TwitterDB {
         Statement s = conn.createStatement();
         try
         {
-
             ResultSet resultSet = s.executeQuery("SELECT tweetId FROM Tweet");
             while (resultSet.next())
             {
