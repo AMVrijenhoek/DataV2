@@ -33,39 +33,23 @@ public class NsApiReader {
 
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
-
         client.addFilter(new HTTPBasicAuthFilter(USERNAME, PASSWORD));
 
-        // Get the protected web page:
+        // Get the protected web page and turn into string
         WebResource webResource = client.resource("http://webservices.ns.nl/ns-api-avt?station=RTD");
         String receivedXML = webResource.accept(MediaType.APPLICATION_XML).get(String.class);
-        //JSONObject tempName = XML.toJSONObject(receivedXML);
 
         departTimes = webResource.get(String.class);
         Stringrestucture();
-
-        System.out.println(departTimes);
-        System.out.println(departTimes.length());
-
         writeToDatabase();
 
         //todo: make a NsDB (new class) see twitterDB class for example.
-
-        //Old code that did not work properly for unknown reasons remove when done with program
-
-        //ClientConfig config = new DefaultClientConfig();
-        //Client client = Client.create(config);
-        //WebResource service = client.resource(UriBuilder.fromUri("http://christianlangejan%40hotmail.com:APREZyc2aQ0I1viyFEMmhsD6-ciFxzNGXgA5NTLCkj2bq_aITYjxdQ@webservices.ns.nl/ns-api-avt?station=RTD").build());
-        //String receivedXML = service.accept(MediaType.APPLICATION_XML).get(String.class);
-        //JSONObject soapDatainJsonObject = XML.toJSONObject(receivedXML);
-        //System.out.println(service);
-        //System.out.println(soapDatainJsonObject.getJSONObject().getJSONObject().getString());
 
     }
 
     private void Stringrestucture()
     {
-        //remove irrelevant parts of string and reorganize(leaves only about 1/4 of the sting in the end)
+        //remove irrelevant parts of string and reorganize to get consistent format(leaves only about 1/4 of the sting in the end)
         departTimes=departTimes.replaceAll("\t","");
         departTimes=departTimes.replaceAll("\n\n","\n");
         departTimes=departTimes.replaceAll("\n\n","\n");
@@ -85,6 +69,7 @@ public class NsApiReader {
         int part=1;
         while(true)
         {
+            //find start of string (past s little bit of rubbish at the start)
             if(Character.toString(departTimes.charAt(a)).equals(";"))
             {
                 break;
@@ -96,8 +81,11 @@ public class NsApiReader {
         }
         for(int i=a;i<departTimes.length();i++)
         {
+            //; should signal a new train with its information. clear all types
             if(Character.toString(departTimes.charAt(i)).equals(";"))
             {
+                //todo write to db
+
                 part=1;
                 ritNumber="";
                 departureTime="";
@@ -111,6 +99,7 @@ public class NsApiReader {
                 departureTrack="";
                 travelTip="";
             }
+            // \n(newline) signals the next datathingy
             else if(Character.toString(departTimes.charAt(i)).equals("\n"))
             {
                 part++;
@@ -119,17 +108,17 @@ public class NsApiReader {
             {
                 switch (part)
                 {
-                    case 1: ritNumber=ritNumber+Character.toString(departTimes.charAt(i)); break;
-                    case 2: departureTime=departureTime+Character.toString(departTimes.charAt(i));break;
-                    case 3: delay=delay+Character.toString(departTimes.charAt(i));break;
-                    case 4: delayText=delayText+Character.toString(departTimes.charAt(i)); break;
-                    case 5: endDestination=endDestination+Character.toString(departTimes.charAt(i));break;
-                    case 6: trainType=trainType+Character.toString(departTimes.charAt(i));break;
-                    case 7: routeText=routeText+Character.toString(departTimes.charAt(i));break;
-                    case 8: carrier=carrier+Character.toString(departTimes.charAt(i));break;
-                    case 9: trackChanced=trackChanced+Character.toString(departTimes.charAt(i));break;
-                    case 10: departureTrack=departureTrack+Character.toString(departTimes.charAt(i));break;
-                    case 11: travelTip=travelTip+Character.toString(departTimes.charAt(i));break;
+                    case 1: ritNumber = ritNumber + Character.toString(departTimes.charAt(i)); break;
+                    case 2: departureTime = departureTime + Character.toString(departTimes.charAt(i));break;
+                    case 3: delay = delay + Character.toString(departTimes.charAt(i));break;
+                    case 4: delayText = delayText + Character.toString(departTimes.charAt(i)); break;
+                    case 5: endDestination = endDestination + Character.toString(departTimes.charAt(i));break;
+                    case 6: trainType = trainType + Character.toString(departTimes.charAt(i));break;
+                    case 7: routeText = routeText + Character.toString(departTimes.charAt(i));break;
+                    case 8: carrier = carrier + Character.toString(departTimes.charAt(i));break;
+                    case 9: trackChanced = trackChanced + Character.toString(departTimes.charAt(i));break;
+                    case 10: departureTrack = departureTrack + Character.toString(departTimes.charAt(i));break;
+                    case 11: travelTip = travelTip + Character.toString(departTimes.charAt(i));break;
                 }
             }
         }
