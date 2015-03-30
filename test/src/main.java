@@ -13,7 +13,7 @@ public class main {
         TwitterReader twitterReader = new TwitterReader();
 
         nsApiReader.getNsApiData();
-        //twitterReader.twitterSearch();
+        twitterReader.twitterSearch();
 
 
     }

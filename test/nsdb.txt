@@ -1,0 +1,423 @@
+
+ 
+
+;938
+2015-03-30T13:40:00+0200
+
+
+Breda
+Intercity direct
+
+NS
+false
+3
+
+;2636
+2015-03-30T13:41:00+0200
+
+
+Vlissingen
+Intercity
+Dordrecht, Roosendaal
+NS
+false
+6
+Stopt vanaf Roosendaal op tussengelegen stations
+
+;1942
+2015-03-30T13:43:00+0200
+
+
+Den Haag Centraal
+Intercity
+Delft, Den Haag HS
+NS
+false
+9
+
+;5149
+2015-03-30T13:45:00+0200
+
+
+Roosendaal
+Sprinter
+Dordrecht, Lage Zwaluwe
+NS
+false
+7
+
+;5142
+2015-03-30T13:47:00+0200
+
+
+Den Haag Centraal
+Sprinter
+Delft, Den Haag HS
+NS
+false
+8
+
+;4240
+2015-03-30T13:47:00+0200
+
+
+Maassluis West
+Sprinter
+Maassluis
+NS
+false
+1b
+
+;1949
+2015-03-30T13:48:00+0200
+
+
+Venlo
+Intercity
+Dordrecht, Breda, Tilburg
+NS
+false
+4
+
+;2851
+2015-03-30T13:50:00+0200
+
+
+Utrecht Centraal
+Intercity
+Alexander, Gouda
+NS
+false
+13
+
+;2653
+2015-03-30T13:52:00+0200
+
+
+Lelystad Centrum
+Intercity
+Schiedam C., Schiphol, Amsterdam C.
+NS
+false
+9
+
+;933
+2015-03-30T13:54:00+0200
+
+
+Amsterdam Centraal
+Intercity direct
+Schiphol
+NS
+false
+12
+
+;2251
+2015-03-30T13:55:00+0200
+
+
+Dordrecht
+Intercity
+
+NS
+false
+6
+
+;4046
+2015-03-30T13:55:00+0200
+
+
+Uitgeest
+Sprinter
+Gouda, Woerden, Amsterdam C.
+NS
+false
+16
+
+;9352
+2015-03-30T13:58:00+0200
+PT3M
++3 min
+Paris-Nord
+Thalys
+Antwerpen-Centr, Brussel-Zuid
+NS International
+false
+3
+
+;9235
+2015-03-30T13:59:00+0200
+
+
+Amsterdam Centraal
+Intercity
+Den Haag HS, Schiphol
+NS International
+false
+9
+
+;5051
+2015-03-30T13:59:00+0200
+
+
+Breda
+Sprinter
+Dordrecht, Lage Zwaluwe
+NS
+false
+7
+
+;5044
+2015-03-30T14:02:00+0200
+
+
+Den Haag Centraal
+Sprinter
+Delft, Den Haag HS
+NS
+false
+8
+
+;4142
+2015-03-30T14:02:00+0200
+
+
+Hoek van Holland Strand
+Sprinter
+Maassluis, Hoek v H. Haven
+NS
+false
+1b
+
+;9993
+2015-03-30T14:05:00+0200
+
+
+Amsterdam Centraal
+Thalys
+
+NS International
+false
+12
+
+;9240
+2015-03-30T14:05:00+0200
+
+
+Brussel-Zuid/Midi
+Intercity
+Dordrecht, Roosendaal, Antwerpen-Centr
+NS International
+false
+4
+
+;551
+2015-03-30T14:05:00+0200
+
+
+Groningen
+Intercity
+Alexander, Gouda, Utrecht C
+NS
+false
+14
+
+;2242
+2015-03-30T14:07:00+0200
+
+
+Amsterdam Centraal
+Intercity
+Schiedam C., Delft, Den Haag HS
+NS
+false
+9
+
+;940
+2015-03-30T14:10:00+0200
+
+
+Breda
+Intercity direct
+
+NS
+false
+3
+
+;2638
+2015-03-30T14:11:00+0200
+
+
+Vlissingen
+Intercity
+Dordrecht, Roosendaal
+NS
+false
+6
+Stopt vanaf Roosendaal op tussengelegen stations
+
+;1944
+2015-03-30T14:13:00+0200
+
+
+Den Haag Centraal
+Intercity
+Delft, Den Haag HS
+NS
+false
+9
+
+;5151
+2015-03-30T14:15:00+0200
+
+
+Roosendaal
+Sprinter
+Dordrecht, Lage Zwaluwe
+NS
+false
+7
+
+;5144
+2015-03-30T14:17:00+0200
+
+
+Den Haag Centraal
+Sprinter
+Delft, Den Haag HS
+NS
+false
+8
+
+;4242
+2015-03-30T14:17:00+0200
+
+
+Maassluis West
+Sprinter
+Maassluis
+NS
+false
+1b
+
+;1951
+2015-03-30T14:18:00+0200
+
+
+Venlo
+Intercity
+Dordrecht, Breda, Tilburg
+NS
+false
+4
+
+;2853
+2015-03-30T14:20:00+0200
+
+
+Utrecht Centraal
+Intercity
+Alexander, Gouda
+NS
+false
+13
+
+;2655
+2015-03-30T14:22:00+0200
+
+
+Lelystad Centrum
+Intercity
+Schiedam C., Schiphol, Amsterdam C.
+NS
+false
+9
+
+;935
+2015-03-30T14:24:00+0200
+
+
+Amsterdam Centraal
+Intercity direct
+Schiphol
+NS
+false
+12
+
+;2253
+2015-03-30T14:25:00+0200
+PT1M
++1 min
+Dordrecht
+Intercity
+
+NS
+false
+6
+
+;4048
+2015-03-30T14:25:00+0200
+
+
+Uitgeest
+Sprinter
+Gouda, Woerden, Amsterdam C.
+NS
+false
+16
+
+;5053
+2015-03-30T14:29:00+0200
+
+
+Breda
+Sprinter
+Dordrecht, Lage Zwaluwe
+NS
+false
+7
+
+;5046
+2015-03-30T14:32:00+0200
+
+
+Den Haag Centraal
+Sprinter
+Delft, Den Haag HS
+NS
+false
+8
+
+;4144
+2015-03-30T14:32:00+0200
+
+
+Hoek van Holland Strand
+Sprinter
+Maassluis, Hoek v H. Haven
+NS
+false
+1b
+
+;12553
+2015-03-30T14:35:00+0200
+
+
+Leeuwarden
+Intercity
+Alexander, Gouda, Utrecht C
+NS
+false
+14
+
+;2244
+2015-03-30T14:37:00+0200
+
+
+Amsterdam Centraal
+Intercity
+Schiedam C., Delft, Den Haag HS
+NS
+false
+9
+

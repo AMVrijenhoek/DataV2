@@ -11,6 +11,8 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 import org.json.JSONObject;
 import org.json.XML;
+import java.io.*;
+import java.sql.SQLException;
 
 public class NsApiReader {
     String departTimes;
@@ -43,6 +45,7 @@ public class NsApiReader {
         Stringrestucture();
         writeToDatabase();
 
+
         //todo: make a NsDB (new class) see twitterDB class for example.
 
     }
@@ -61,10 +64,22 @@ public class NsApiReader {
         departTimes=departTimes.replaceAll("</.*>","");
         departTimes=departTimes.replaceAll("<VertrekkendeTrein>\n",";");
         departTimes=departTimes.replaceAll("<.*>","");
-
+        System.out.println(departTimes);
     }
+
     private void writeToDatabase()
     {
+
+        try {
+            File file = new File("nsdb.txt");
+            BufferedWriter output = new BufferedWriter(new FileWriter(file));
+            output.write(departTimes);
+            //ritNumber+","+departureTime+","+delay+","+delayText+","+endDestination+","+trainType+","+routeText+","+carrier+","+trackChanced+","+departureTrack+","+travelTip
+            output.close();
+        } catch ( IOException e ) {
+            e.printStackTrace();
+        }
+
         int a=0;
         int part=1;
         while(true)
@@ -82,10 +97,14 @@ public class NsApiReader {
         for(int i=a;i<departTimes.length();i++)
         {
             //; should signal a new train with its information. clear all types
-            if(Character.toString(departTimes.charAt(i)).equals(";"))
-            {
-                //todo write to db
+            if(Character.toString(departTimes.charAt(i)).equals(";")) {
 
+                //todo write to db
+                //NsDB nsdb = new NsDB("nsDB");
+                //TwitterDB jk = new TwitterDB("koekje");
+
+
+                //reset for next train
                 part=1;
                 ritNumber="";
                 departureTime="";
