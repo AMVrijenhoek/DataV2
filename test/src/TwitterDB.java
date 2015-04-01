@@ -8,55 +8,73 @@ import java.sql.*;
 import java.util.*;
 import java.util.Date;
 
+import static java.sql.DriverManager.*;
 
-public class TwitterDB {
-    private Connection conn;
-    private String driver = "org.apache.derby.jdbc.EmbeddedDriver";
-    public TwitterDB(String dbName) throws ClassNotFoundException, SQLException
+public class TwitterDB
     {
-        String dbConnectionString = "jtdb" + dbName + "create=true";
-        String greatString = "CREATE TABLE Tweet(tweetId INT, tweetUser VARCHAR, tweetText VARCHAR, tweetRetweetCount INT, tweetFavoriteCount INT, tweetCreatedAt DATE, tweetAttitude VARCHAR)";
-        Class.forName(driver);
-        conn = DriverManager.getConnection(dbConnectionString);
-        Statement statement = conn.createStatement();
-        if (true)
+    private String userName = "root";
+    private String password = "";
+    private String driver = "com.mysql.jdbc.Driver";
+    Connection conn = null;
+    Statement statement = null;
+
+    public TwitterDB(String dbName)
+    {
+        try
         {
-            statement.execute("Drop TABLE Tweet");
-            statement.execute(greatString);
+            String dbConnectionString = "jdbc:mysql://localhost:3306/"+dbName;
+            String creatString = "CREATE TABLE Tweet(tweetId INT, tweetUser VARCHAR, tweetText VARCHAR, tweetRetweetCount INT, tweetFavoriteCount INT, tweetCreatedAt DATE, tweetAttitude VARCHAR)";
+            Class.forName(driver).newInstance();
+            conn = DriverManager.getConnection(dbConnectionString, userName, password);
+            System.out.println("PING");
+            statement = conn.createStatement();
+            if (true)//todo replace true for condition
+            {
+                statement.execute(creatString);
+                System.out.print("db greated");
+            }
+        }
+        catch (Exception e)
+        {
+        System.out.println("Ping");
+            System.out.print(e);
         }
     }
 
-    public void updatedb(Long tweetId, String tweetUser, String tweetText, int tweetRetweetCount, int tweetFavoriteCount, Date tweetCreatedAt, String tweetAttitude) throws ClassNotFoundException, SQLException
-    {
-        Statement s = conn.createStatement();
-        try
-        {
 
-            ResultSet resultSet = s.executeQuery("SELECT tweetId FROM Tweet");
-            while (resultSet.next())
+
+    public void updatedb(Long tweetId, String tweetUser, String tweetText, int tweetRetweetCount, int tweetFavoriteCount, Date tweetCreatedAt, String tweetAttitude) throws ClassNotFoundException, SQLException
+        {
+        statement = conn.createStatement();
+        try
             {
-                if (tweetId != resultSet.getLong(0))
+
+            ResultSet resultSet = statement.executeQuery("SELECT tweetId FROM Tweet");
+            while (resultSet.next())
                 {
+                if (tweetId != resultSet.getLong(0))
+                    {
                     PreparedStatement psInsert = conn.prepareStatement("INSERT INTO tweet(tweetId INT, tweetUser VARCHAR, tweetText VARCHAR, tweetRetweetCount INT, tweetFavoriteCount INT, tweetCreatedAt DATE, tweetAttitude VARCHAR) " +
                             "VALUE (tweetId, tweetUser, tweetText, tweetRetweetCount, tweetFavoriteCount, tweetCreatedAt, tweetAttitude)");
                     psInsert.executeUpdate();
+                    }
                 }
+            } finally
+            {
+            statement.close();
             }
         }
-        finally
-        {
-            s.close();
-        }
-    }
+
+
 
     public void shutDownDB() throws ClassNotFoundException, SQLException
     {
-        if (driver.equals("org.apache.derby.jdbc.EmbeddedDriver"))
+        if (driver.equals("oracle.jdbc.driver.OracleDriver"))
         {
             boolean gotSQLExc = false;
             try
             {
-                DriverManager.getConnection("jdbc:derby:;shutdown=true");
+                getConnection("jdbc:derby:;shutdown=true");
             }
             catch (SQLException se)
             {
@@ -76,3 +94,4 @@ public class TwitterDB {
         }
     }
 }
+
