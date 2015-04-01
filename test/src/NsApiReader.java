@@ -11,6 +11,8 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 import org.json.JSONObject;
 import org.json.XML;
+import java.io.*;
+import java.sql.SQLException;
 
 public class NsApiReader {
     String departTimes;
@@ -23,7 +25,8 @@ public class NsApiReader {
     String routeText;
     String carrier;
     String trackChanced;
-    String DepartureTrack;
+    String departureTrack;
+    String travelTip;
 
     public void getNsApiData()
     {
@@ -32,64 +35,112 @@ public class NsApiReader {
 
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
-
         client.addFilter(new HTTPBasicAuthFilter(USERNAME, PASSWORD));
 
-        // Get the protected web page:
+        // Get the protected web page and turn into string
         WebResource webResource = client.resource("http://webservices.ns.nl/ns-api-avt?station=RTD");
         String receivedXML = webResource.accept(MediaType.APPLICATION_XML).get(String.class);
-        //JSONObject tempName = XML.toJSONObject(receivedXML);
 
         departTimes = webResource.get(String.class);
         Stringrestucture();
+        writeToDatabase();
 
-        //todo write to database
-
-        System.out.println(departTimes);
 
         //todo: make a NsDB (new class) see twitterDB class for example.
-
-        //Old code that did not work properly for unknown reasons remove when done with program
-
-        //ClientConfig config = new DefaultClientConfig();
-        //Client client = Client.create(config);
-        //WebResource service = client.resource(UriBuilder.fromUri("http://christianlangejan%40hotmail.com:APREZyc2aQ0I1viyFEMmhsD6-ciFxzNGXgA5NTLCkj2bq_aITYjxdQ@webservices.ns.nl/ns-api-avt?station=RTD").build());
-        //String receivedXML = service.accept(MediaType.APPLICATION_XML).get(String.class);
-        //JSONObject soapDatainJsonObject = XML.toJSONObject(receivedXML);
-        //System.out.println(service);
-        //System.out.println(soapDatainJsonObject.getJSONObject().getJSONObject().getString());
 
     }
 
     private void Stringrestucture()
     {
-        //remove irrelevant parts of string and reorganize(leaves only about 1/4 of the sting in the end)
+        //remove irrelevant parts of string and reorganize to get consistent format(leaves only about 1/4 of the sting in the end)
         departTimes=departTimes.replaceAll("\t","");
-        //departTimes=departTimes.replaceAll("\n\n","\n");
-        //departTimes=departTimes.replaceAll("\n\n","\n");
-        //departTimes=departTimes.replaceAll("<VertrekSpoor wijziging=\"false\">","false\n");
-        //departTimes=departTimes.replaceAll("<VertrekSpoor wijziging=\"true\">","true\n");
-        //departTimes=departTimes.replaceAll("<VertrekVertraging>","==========");
-        //departTimes=departTimes.replaceAll("</.*>","");
-        //departTimes=departTimes.replaceAll("<.*>","");
-        //departTimes=departTimes.replaceAll("\n\n","\n;");
-        /*
-        departTimes=departTimes.replaceAll("/","");
-        departTimes=departTimes.replaceAll("<RitNummer>","");
-        departTimes=departTimes.replaceAll("<VertrekTijd>","");
-        departTimes=departTimes.replaceAll("<VertrekVertraging>","&");
-        departTimes=departTimes.replaceAll("<VertrekVertragingTekst>","");
-        departTimes=departTimes.replaceAll("<EindBestemming>","");
-        departTimes=departTimes.replaceAll("<TreinSoort>","");
-        departTimes=departTimes.replaceAll("<RouteTekst>","");
-        departTimes=departTimes.replaceAll("<Vervoerder>","");
+        departTimes=departTimes.replaceAll("\n\n","\n");
+        departTimes=departTimes.replaceAll("\n\n","\n");
+        departTimes=departTimes.replaceAll("</VertrekTijd>\n<EindBestemming>","\n\n\n");
+        departTimes=departTimes.replaceAll("</TreinSoort>\n<Vervoerder>","\n\n");
         departTimes=departTimes.replaceAll("<VertrekSpoor wijziging=\"false\">","false\n");
         departTimes=departTimes.replaceAll("<VertrekSpoor wijziging=\"true\">","true\n");
-        departTimes=departTimes.replaceAll("<VertrekSpoor>","");
-        departTimes=departTimes.replaceAll("<VertrekkendeTrein>\n<VertrekkendeTrein>",";");
-        departTimes=departTimes.replaceAll("<ReisTip>","");
-        departTimes=departTimes.replaceAll("<ActueleVertrekTijden>","");
-        departTimes=departTimes.replaceAll("<VertrekkendeTrein>","");
-        */
+        departTimes=departTimes.replaceAll("</VertrekSpoor>\n</VertrekkendeTrein>","\n");
+        departTimes=departTimes.replaceAll("</.*>","");
+        departTimes=departTimes.replaceAll("<VertrekkendeTrein>\n",";");
+        departTimes=departTimes.replaceAll("<.*>","");
+        System.out.println(departTimes);
     }
+
+    private void writeToDatabase()
+    {
+
+        try {
+            File file = new File("nsdb.txt");
+            BufferedWriter output = new BufferedWriter(new FileWriter(file));
+            output.write(departTimes);
+            //ritNumber+","+departureTime+","+delay+","+delayText+","+endDestination+","+trainType+","+routeText+","+carrier+","+trackChanced+","+departureTrack+","+travelTip
+            output.close();
+        } catch ( IOException e ) {
+            e.printStackTrace();
+        }
+
+        int a=0;
+        int part=1;
+        while(true)
+        {
+            //find start of string (past s little bit of rubbish at the start)
+            if(Character.toString(departTimes.charAt(a)).equals(";"))
+            {
+                break;
+            }
+            else
+            {
+                a++;
+            }
+        }
+        for(int i=a;i<departTimes.length();i++)
+        {
+            //; should signal a new train with its information. clear all types
+            if(Character.toString(departTimes.charAt(i)).equals(";")) {
+
+                //todo write to db
+                //NsDB nsdb = new NsDB("nsDB");
+                //TwitterDB jk = new TwitterDB("koekje");
+
+
+                //reset for next train
+                part=1;
+                ritNumber="";
+                departureTime="";
+                delay="";
+                delayText="";
+                endDestination="";
+                trainType="";
+                routeText="";
+                carrier="";
+                trackChanced="";
+                departureTrack="";
+                travelTip="";
+            }
+            // \n(newline) signals the next datathingy
+            else if(Character.toString(departTimes.charAt(i)).equals("\n"))
+            {
+                part++;
+            }
+            else
+            {
+                switch (part)
+                {
+                    case 1: ritNumber = ritNumber + Character.toString(departTimes.charAt(i)); break;
+                    case 2: departureTime = departureTime + Character.toString(departTimes.charAt(i));break;
+                    case 3: delay = delay + Character.toString(departTimes.charAt(i));break;
+                    case 4: delayText = delayText + Character.toString(departTimes.charAt(i)); break;
+                    case 5: endDestination = endDestination + Character.toString(departTimes.charAt(i));break;
+                    case 6: trainType = trainType + Character.toString(departTimes.charAt(i));break;
+                    case 7: routeText = routeText + Character.toString(departTimes.charAt(i));break;
+                    case 8: carrier = carrier + Character.toString(departTimes.charAt(i));break;
+                    case 9: trackChanced = trackChanced + Character.toString(departTimes.charAt(i));break;
+                    case 10: departureTrack = departureTrack + Character.toString(departTimes.charAt(i));break;
+                    case 11: travelTip = travelTip + Character.toString(departTimes.charAt(i));break;
+                }
+            }
+        }
+    }
+
 }

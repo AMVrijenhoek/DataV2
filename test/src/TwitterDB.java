@@ -45,11 +45,15 @@ public class TwitterDB
 
     public void updatedb(Long tweetId, String tweetUser, String tweetText, int tweetRetweetCount, int tweetFavoriteCount, Date tweetCreatedAt, String tweetAttitude) throws ClassNotFoundException, SQLException
         {
+<<<<<<< HEAD
         statement = conn.createStatement();
         try
             {
 
             ResultSet resultSet = statement.executeQuery("SELECT tweetId FROM Tweet");
+=======
+            ResultSet resultSet = s.executeQuery("SELECT tweetId FROM Tweet");
+>>>>>>> 72c034a882f8d3e6a5cc4fca64ec35bd39042633
             while (resultSet.next())
                 {
                 if (tweetId != resultSet.getLong(0))
