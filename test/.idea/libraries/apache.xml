@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="apache">
+    <CLASSES>
+      <root url="file://$MAVEN_REPOSITORY$/org/apache" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
