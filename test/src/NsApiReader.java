@@ -14,7 +14,8 @@ import org.json.XML;
 import java.io.*;
 import java.sql.SQLException;
 
-public class NsApiReader {
+public class NsApiReader
+{
     String departTimes;
     String ritNumber;
     String departureTime;
@@ -39,15 +40,11 @@ public class NsApiReader {
 
         // Get the protected web page and turn into string
         WebResource webResource = client.resource("http://webservices.ns.nl/ns-api-avt?station=RTD");
-        String receivedXML = webResource.accept(MediaType.APPLICATION_XML).get(String.class);
+        //String receivedXML = webResource.accept(MediaType.APPLICATION_XML).get(String.class);
 
         departTimes = webResource.get(String.class);
         Stringrestucture();
         writeToDatabase();
-
-
-        //todo: make a NsDB (new class) see twitterDB class for example.
-
     }
 
     private void Stringrestucture()
@@ -64,12 +61,12 @@ public class NsApiReader {
         departTimes=departTimes.replaceAll("</.*>","");
         departTimes=departTimes.replaceAll("<VertrekkendeTrein>\n",";");
         departTimes=departTimes.replaceAll("<.*>","");
-        System.out.println(departTimes);
+        //System.out.println(departTimes);
     }
 
     private void writeToDatabase()
     {
-
+        /*
         try {
             File file = new File("nsdb.txt");
             BufferedWriter output = new BufferedWriter(new FileWriter(file));
@@ -79,7 +76,7 @@ public class NsApiReader {
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-
+        */
         int a=0;
         int part=1;
         while(true)
@@ -97,12 +94,25 @@ public class NsApiReader {
         for(int i=a;i<departTimes.length();i++)
         {
             //; should signal a new train with its information. clear all types
-            if(Character.toString(departTimes.charAt(i)).equals(";")) {
+            if(Character.toString(departTimes.charAt(i)).equals(";"))
+            {
 
                 //todo write to db
-                //NsDB nsdb = new NsDB("nsDB");
-                //TwitterDB jk = new TwitterDB("koekje");
 
+                NsDB nsdb = new NsDB("nsDB");
+                //remove if it works
+                /*try
+                {
+                    NsDB nsdb = new NsDB("nsDB");
+                }
+                catch (ClassNotFoundException ce)
+                {
+                    System.out.println("ClassNotFoundException at NsApiReader");
+                }
+                catch (SQLException se)
+                {
+                    System.out.println("SQLException at NsApiReader");
+                }*/
 
                 //reset for next train
                 part=1;

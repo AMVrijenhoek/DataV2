@@ -1,53 +1,8 @@
 
  
 
-;938
-2015-03-30T13:40:00+0200
-
-
-Breda
-Intercity direct
-
-NS
-false
-3
-
-;2636
-2015-03-30T13:41:00+0200
-
-
-Vlissingen
-Intercity
-Dordrecht, Roosendaal
-NS
-false
-6
-Stopt vanaf Roosendaal op tussengelegen stations
-
-;1942
-2015-03-30T13:43:00+0200
-
-
-Den Haag Centraal
-Intercity
-Delft, Den Haag HS
-NS
-false
-9
-
-;5149
-2015-03-30T13:45:00+0200
-
-
-Roosendaal
-Sprinter
-Dordrecht, Lage Zwaluwe
-NS
-false
-7
-
-;5142
-2015-03-30T13:47:00+0200
+;5134
+2015-04-01T11:47:00+0200
 
 
 Den Haag Centraal
@@ -57,19 +12,8 @@ NS
 false
 8
 
-;4240
-2015-03-30T13:47:00+0200
-
-
-Maassluis West
-Sprinter
-Maassluis
-NS
-false
-1b
-
-;1949
-2015-03-30T13:48:00+0200
+;1941
+2015-04-01T11:48:00+0200
 
 
 Venlo
@@ -79,8 +23,8 @@ NS
 false
 4
 
-;2851
-2015-03-30T13:50:00+0200
+;2843
+2015-04-01T11:50:00+0200
 
 
 Utrecht Centraal
@@ -90,8 +34,8 @@ NS
 false
 13
 
-;2653
-2015-03-30T13:52:00+0200
+;2645
+2015-04-01T11:52:00+0200
 
 
 Lelystad Centrum
@@ -101,8 +45,8 @@ NS
 false
 9
 
-;933
-2015-03-30T13:54:00+0200
+;925
+2015-04-01T11:54:00+0200
 
 
 Amsterdam Centraal
@@ -112,8 +56,13 @@ NS
 false
 12
 
-;2251
-2015-03-30T13:55:00+0200
+
+Rijdt vandaag niet
+
+
+
+;2243
+2015-04-01T11:55:00+0200
 
 
 Dordrecht
@@ -123,8 +72,8 @@ NS
 false
 6
 
-;4046
-2015-03-30T13:55:00+0200
+;4038
+2015-04-01T11:55:00+0200
 
 
 Uitgeest
@@ -134,19 +83,8 @@ NS
 false
 16
 
-;9352
-2015-03-30T13:58:00+0200
-PT3M
-+3 min
-Paris-Nord
-Thalys
-Antwerpen-Centr, Brussel-Zuid
-NS International
-false
-3
-
-;9235
-2015-03-30T13:59:00+0200
+;9227
+2015-04-01T11:59:00+0200
 
 
 Amsterdam Centraal
@@ -156,19 +94,24 @@ NS International
 false
 9
 
-;5051
-2015-03-30T13:59:00+0200
+
+Rijdt vandaag niet
+
+
+
+;5043
+2015-04-01T11:59:00+0200
 
 
 Breda
 Sprinter
 Dordrecht, Lage Zwaluwe
 NS
-false
-7
+true
+6
 
-;5044
-2015-03-30T14:02:00+0200
+;5036
+2015-04-01T12:02:00+0200
 
 
 Den Haag Centraal
@@ -178,8 +121,8 @@ NS
 false
 8
 
-;4142
-2015-03-30T14:02:00+0200
+;4134
+2015-04-01T12:02:00+0200
 
 
 Hoek van Holland Strand
@@ -189,30 +132,19 @@ NS
 false
 1b
 
-;9993
-2015-03-30T14:05:00+0200
-
-
-Amsterdam Centraal
-Thalys
-
-NS International
-false
-12
-
-;9240
-2015-03-30T14:05:00+0200
+;9232
+2015-04-01T12:05:00+0200
 
 
 Brussel-Zuid/Midi
 Intercity
 Dordrecht, Roosendaal, Antwerpen-Centr
 NS International
-false
-4
+true
+7
 
-;551
-2015-03-30T14:05:00+0200
+;543
+2015-04-01T12:05:00+0200
 
 
 Groningen
@@ -222,8 +154,8 @@ NS
 false
 14
 
-;2242
-2015-03-30T14:07:00+0200
+;2234
+2015-04-01T12:07:00+0200
 
 
 Amsterdam Centraal
@@ -233,8 +165,8 @@ NS
 false
 9
 
-;940
-2015-03-30T14:10:00+0200
+;932
+2015-04-01T12:10:00+0200
 
 
 Breda
@@ -244,20 +176,23 @@ NS
 false
 3
 
-;2638
-2015-03-30T14:11:00+0200
+
+Rijdt vandaag niet
 
 
+
+;302630
+2015-04-01T12:11:00+0200
+PT1M
++1 min
 Vlissingen
 Intercity
-Dordrecht, Roosendaal
-NS
+Rotterdam Blaak, Dordrecht, Roosendaal
 false
 6
-Stopt vanaf Roosendaal op tussengelegen stations
 
-;1944
-2015-03-30T14:13:00+0200
+;1936
+2015-04-01T12:13:00+0200
 
 
 Den Haag Centraal
@@ -267,8 +202,8 @@ NS
 false
 9
 
-;5151
-2015-03-30T14:15:00+0200
+;5143
+2015-04-01T12:15:00+0200
 
 
 Roosendaal
@@ -278,8 +213,8 @@ NS
 false
 7
 
-;5144
-2015-03-30T14:17:00+0200
+;5136
+2015-04-01T12:17:00+0200
 
 
 Den Haag Centraal
@@ -289,8 +224,8 @@ NS
 false
 8
 
-;4242
-2015-03-30T14:17:00+0200
+;4234
+2015-04-01T12:17:00+0200
 
 
 Maassluis West
@@ -300,8 +235,8 @@ NS
 false
 1b
 
-;1951
-2015-03-30T14:18:00+0200
+;1943
+2015-04-01T12:18:00+0200
 
 
 Venlo
@@ -311,8 +246,8 @@ NS
 false
 4
 
-;2853
-2015-03-30T14:20:00+0200
+;2845
+2015-04-01T12:20:00+0200
 
 
 Utrecht Centraal
@@ -322,8 +257,8 @@ NS
 false
 13
 
-;2655
-2015-03-30T14:22:00+0200
+;2647
+2015-04-01T12:22:00+0200
 
 
 Lelystad Centrum
@@ -333,8 +268,8 @@ NS
 false
 9
 
-;935
-2015-03-30T14:24:00+0200
+;927
+2015-04-01T12:24:00+0200
 
 
 Amsterdam Centraal
@@ -344,19 +279,35 @@ NS
 false
 12
 
-;2253
-2015-03-30T14:25:00+0200
-PT1M
-+1 min
+
+Rijdt vandaag niet
+
+
+
+;2245
+2015-04-01T12:25:00+0200
+
+
 Dordrecht
 Intercity
 
 NS
 false
-6
+3
 
-;4048
-2015-03-30T14:25:00+0200
+;9340
+2015-04-01T12:25:00+0200
+PT4M
++4 min
+Paris-Nord
+Thalys
+Antwerpen-Centr, Brussel-Zuid
+NS International
+false
+3
+
+;4040
+2015-04-01T12:25:00+0200
 
 
 Uitgeest
@@ -366,8 +317,8 @@ NS
 false
 16
 
-;5053
-2015-03-30T14:29:00+0200
+;5045
+2015-04-01T12:29:00+0200
 
 
 Breda
@@ -375,10 +326,10 @@ Sprinter
 Dordrecht, Lage Zwaluwe
 NS
 false
-7
+4
 
-;5046
-2015-03-30T14:32:00+0200
+;5038
+2015-04-01T12:32:00+0200
 
 
 Den Haag Centraal
@@ -388,8 +339,8 @@ NS
 false
 8
 
-;4144
-2015-03-30T14:32:00+0200
+;4136
+2015-04-01T12:32:00+0200
 
 
 Hoek van Holland Strand
@@ -399,8 +350,8 @@ NS
 false
 1b
 
-;12553
-2015-03-30T14:35:00+0200
+;12545
+2015-04-01T12:35:00+0200
 
 
 Leeuwarden
@@ -410,8 +361,8 @@ NS
 false
 14
 
-;2244
-2015-03-30T14:37:00+0200
+;2236
+2015-04-01T12:37:00+0200
 
 
 Amsterdam Centraal
@@ -420,4 +371,85 @@ Schiedam C., Delft, Den Haag HS
 NS
 false
 9
+
+;934
+2015-04-01T12:40:00+0200
+
+
+Breda
+Intercity direct
+
+NS
+false
+3
+
+
+Rijdt vandaag niet
+
+
+
+;302632
+2015-04-01T12:41:00+0200
+
+
+Vlissingen
+Intercity
+Rotterdam Blaak, Dordrecht, Roosendaal
+false
+4
+
+;1938
+2015-04-01T12:43:00+0200
+
+
+Den Haag Centraal
+Intercity
+Delft, Den Haag HS
+NS
+false
+9
+
+;5145
+2015-04-01T12:45:00+0200
+
+
+Roosendaal
+Sprinter
+Dordrecht, Lage Zwaluwe
+NS
+false
+7
+
+;5138
+2015-04-01T12:47:00+0200
+
+
+Den Haag Centraal
+Sprinter
+Delft, Den Haag HS
+NS
+false
+8
+
+;4236
+2015-04-01T12:47:00+0200
+
+
+Maassluis West
+Sprinter
+Maassluis
+NS
+false
+1b
+
+;1945
+2015-04-01T12:48:00+0200
+
+
+Venlo
+Intercity
+Dordrecht, Breda, Tilburg
+NS
+false
+3
 

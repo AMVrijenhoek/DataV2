@@ -7,25 +7,32 @@ import java.util.Date;
 
 public class NsDB {
     private Connection conn;
-    public NsDB(String dbName) throws ClassNotFoundException, SQLException
+    public NsDB(String dbName) //throws ClassNotFoundException, SQLException
     {
-        String driver = "org.apache.derby.jdbc.EmbeddedDriver";
-        String dbConnectionString = "jtdb" + dbName + "create=true";
-        String greatString = "GREAT TABLE departure_times(train_id INTEGER, departure_time DATE, departure_delay INT, delay_text VARCHAR, end_destination VARCHAR, train_type VARCHAR, route_text VARCHAR, carrier VARCHAR, track_chance BOOLEAN, departure_track INTEGER, travel_tip VARCHAR)";
-        Class.forName(driver);
-        conn = DriverManager.getConnection(dbConnectionString);
-        Statement statement = conn.createStatement();
-        if (true)
+        try
         {
-            statement.execute("Drop TABLE departure_times");
-            statement.execute(greatString);
+            String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+            String dbConnectionString = "jtdb" + dbName + "create=true";
+            String greatString = "CREATE TABLE departure_times(train_id INTEGER, departure_time DATE, departure_delay INT, delay_text VARCHAR, end_destination VARCHAR, train_type VARCHAR, route_text VARCHAR, carrier VARCHAR, track_chance BOOLEAN, departure_track INTEGER, travel_tip VARCHAR)";
+            Class.forName(driver);
+            conn = DriverManager.getConnection(dbConnectionString);
+            Statement statement = conn.createStatement();
+            if (true) {
+                statement.execute("Drop TABLE departure_times");
+                statement.execute(greatString);
+            }
         }
+        catch (ClassNotFoundException cnf)
+        {
+            System.out.println("classnotfoundexception at NsDB ");
+        }
+        catch (SQLException sqle){}
     }
 
-    public void updateNSDb(int trainId, Date departureTime, int DepartureDelay, String DelayText, String endDestination, String trainType,String routeText, String carrier, Boolean trackChance, int departureTrack, String travelTip)throws ClassNotFoundException, SQLException
+    public void updateNSDB(int trainId, Date departureTime, int DepartureDelay, String DelayText, String endDestination, String trainType,String routeText, String carrier, Boolean trackChance, int departureTrack, String travelTip)throws ClassNotFoundException, SQLException
     {
         Statement s = conn.createStatement();
-        try
+        //try
         {
             ResultSet resultSet = s.executeQuery("SELECT trainId FROM departure_times");
             while (resultSet.next())
@@ -38,7 +45,7 @@ public class NsDB {
                 }
             }
         }
-        finally
+        //finally
         {
             s.close();
         }
